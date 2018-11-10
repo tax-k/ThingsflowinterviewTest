@@ -12,10 +12,24 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var customUrl: String = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        self.customUrl = url.absoluteString
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = mainStoryboard.instantiateInitialViewController()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
